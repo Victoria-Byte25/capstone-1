@@ -16,6 +16,13 @@ public class Transaction {
         this.type = type;
         this.timestamp = LocalDateTime.now();
     }
+    //For loading from CSV
+    public Transaction(String vendor, double amount, String type, LocalDateTime timestamp){
+        this.vendor = vendor;
+        this.amount = amount;
+        this.type = type;
+        this.timestamp = timestamp;
+    }
 
     public String getVendor() {
         return vendor;
@@ -26,6 +33,17 @@ public class Transaction {
     }
 
     public String getType() {
-        return amount >= 0 ? "Deposit" : "Payment";
+        return type;
+    }
+
+    public String getFormattedTimestampe() {
+        return timestamp.toString(); // saves time in standard format
+    }
+    @Override
+    public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return String.format("%s | $%.2f | %s",
+                type.toUpperCase(), vendor, Math.abs(amount), formatter.format(timestamp));
+
     }
 }

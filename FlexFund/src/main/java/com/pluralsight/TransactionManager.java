@@ -5,6 +5,7 @@ import java.util.List;
 public class TransactionManager {
     private List <Transaction> transactions = new ArrayList<>();
 
+
     public void addTransaction(String vendor, double amount){
         Transaction transaction = new Transaction(vendor, amount);
         transactions.add(transaction);
