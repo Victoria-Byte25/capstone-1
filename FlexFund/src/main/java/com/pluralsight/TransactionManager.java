@@ -4,29 +4,28 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class TransactionManager {
-    private List <Transaction> transactions = new ArrayList<>();
-    private final String File_Name = "transactions.csv";
+    private List<Transaction> transactions = new ArrayList<>();
+    private final String FILE_NAME = "transactions.csv";
 
     public TransactionManager() {
-        loadTransactionsFromFile(); // Loads transaction from start
+        loadTransactionsFromFile();  // Load from CSV at startup
     }
 
     public void addTransaction(Scanner scanner, String type) {
-        System.out.println("Enter vendor");
-        String vendor = scanner.next();
+        System.out.print("Enter vendor: ");
+        String vendor = scanner.nextLine();
 
-        System.out.println("Enter amount: ");
+        System.out.print("Enter amount: ");
         double amount = Double.parseDouble(scanner.nextLine());
 
-        if (type.equals("payment")) {
-            amount = -Math.abs(amount); // payments are stored negative diff. from deposit
+        if (type.equalsIgnoreCase("payment")) {
+            amount = -Math.abs(amount); // Payments are stored negative
         }
 
-        Transaction transaction = new Transaction(vendor, amount);
+        Transaction transaction = new Transaction(vendor, amount, type);
         transactions.add(transaction);
-        writeTransactionToFile(transactions); // save to CSV
+        writeTransactionToFile(transaction);  // Save to CSV
         System.out.println("Transaction added.");
-
     }
 
     public void listTransactions() {
@@ -34,25 +33,49 @@ public class TransactionManager {
             System.out.println("No transactions yet.");
             return;
         }
+
         System.out.println("=== Recent Transactions (Newest First) ===");
-            for (int i = transactions.size() -1; i >= 0; i--) {
-                System.out.println(transactions.get(i));
-            }
+        for (int i = transactions.size() - 1; i >= 0; i--) {
+            System.out.println(transactions.get(i));
         }
     }
 
-    public double getBalance() {
+    public void getBalance() {
         double total = 0;
         for (Transaction t : transactions) {
             total += t.getAmount();
         }
-        return total;
+        System.out.printf("Current Balance: $%.2f\n", total);
     }
 
-    public int getTransactionCount() {
-        return transactions.size();
+    private void writeTransactionToFile(Transaction t) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, true))) {
+            writer.write(String.format("%s,%s,%.2f,%s\n",
+                    t.getType(), t.getVendor(), t.getAmount(), t.getFormattedTimestamp()));
+        } catch (IOException e) {
+            System.out.println("Error writing to CSV: " + e.getMessage());
+        }
     }
 
+    private void loadTransactionsFromFile() {
+        File file = new File(FILE_NAME);
+        if (!file.exists()) return;
 
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",", 4);
+                if (parts.length < 4) continue;
 
+                String type = parts[0];
+                String vendor = parts[1];
+                double amount = Double.parseDouble(parts[2]);
+                LocalDateTime timestamp = LocalDateTime.parse(parts[3]);
+
+                transactions.add(new Transaction(vendor, amount, type, timestamp));
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading CSV: " + e.getMessage());
+        }
+    }
 }

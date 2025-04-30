@@ -1,6 +1,9 @@
 package com.pluralsight;
 
 public class GoalTracker {
+    public void showProgress () {
+        System.out.println("Savings and spending progress feature coming soon!");
+    }
     private double savingsGoal = 1000.0; // Example goal
     private double spendingLimit = 500.0; // Example spending limit
 

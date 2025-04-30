@@ -10,7 +10,7 @@ public class Transaction {
     private String type;
     private LocalDateTime timestamp;
 
-    public Transaction(String vendor, double amount) {
+    public Transaction(String vendor, double amount, String type) {
         this.vendor = vendor;
         this.amount = amount;
         this.type = type;
@@ -36,13 +36,13 @@ public class Transaction {
         return type;
     }
 
-    public String getFormattedTimestampe() {
+    public String getFormattedTimestamp() {
         return timestamp.toString(); // saves time in standard format
     }
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        return String.format("%s | $%.2f | %s",
+        return String.format("%s | %s | $%.2f | %s",
                 type.toUpperCase(), vendor, Math.abs(amount), formatter.format(timestamp));
 
     }
