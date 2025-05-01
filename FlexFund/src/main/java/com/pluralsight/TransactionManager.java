@@ -3,6 +3,14 @@ import java.io.*;
 import java.time.LocalDateTime;
 import java.util.*;
 
+/**
+ * Handles all logic related to transactions such as:
+ * - Adding new transactions
+ * - Viewing all transactions (sorted by newest)
+ * - Filtering transactions (by type, vendor, etc.)
+ * - Saving/loading transactions to/from CSV
+ */
+
 public class TransactionManager {
     private List<Transaction> transactions = new ArrayList<>();
     private final String FILE_NAME = "transactions.csv";

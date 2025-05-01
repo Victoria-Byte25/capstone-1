@@ -4,11 +4,13 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+//Each transaction has a date, vendor, amount, and a description.
+
 public class Transaction {
-    private String vendor;
-    private double amount;
-    private String type;
-    private LocalDateTime timestamp;
+    private String vendor;  // vendor - who the transaction was with
+    private double amount; // amount - how much was spent or received
+    private String type; // type - notes about the transaction
+    private LocalDateTime timestamp; // date - when the transaction happened
 
     public Transaction(String vendor, double amount, String type) {
         this.vendor = vendor;

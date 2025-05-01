@@ -14,6 +14,8 @@ public class FlexFundApp {
         System.out.println("Welcome to FlexFund App!");
         System.out.println("\"" + quoteGenerator.getRandomFunnyQuote() + "\"");
 
+        // The display menu that handles user choices
+
         boolean running = true;
         while (running) {
             System.out.println("\nWhat would you like to do?");
