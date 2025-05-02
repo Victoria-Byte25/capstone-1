@@ -10,7 +10,8 @@ public class FlexFundApp {
         GoalTracker goalTracker = new GoalTracker();
         QuoteGenerator quoteGenerator = new QuoteGenerator();
 
-        // Quote when app opens
+        // Quote when app opens3
+
         System.out.println("Welcome to FlexFund App!");
         System.out.println("\"" + quoteGenerator.getRandomFunnyQuote() + "\"");
 
