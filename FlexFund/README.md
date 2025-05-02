@@ -1,23 +1,26 @@
-# 💸 FlexFund
+FlexFund
 
-**FlexFund** is a clean, confidence-building CLI app that helps you track your deposits, payments, savings goals, and available balance — with a little boss energy. 💅🏽
+FlexFund is a clean, confidence-building CLI app that helps you track your deposits, payments, savings goals, and available balance — with a little boss energy. 💅🏽
 
 Forget boring spreadsheets. FlexFund is all about financial focus with flair.
 
----
 
-## 🚀 Features
+## Features
+ 
+-  **Motivational Quotes** at startup to hype you up
 
-- ✨ **Motivational Quotes** at startup to hype you up
-- 💰 **Add Deposits & Payments** to your transaction ledger
-- 🧾 **View Ledger**: All transactions, deposits only, or payments only
-- 📊 **View Available Balance** at any time
-- 🎯 **Set Savings & Spending Goals**
-- 🏆 **Achievement Alerts** when you hit your financial goals
+- **Add Deposits & Payments** to your transaction ledger
 
----
+- **View Ledger**: All transactions, deposits only, or payments only
 
-## 🧠 What I Learned
+- **View Available Balance** at any time
+
+- **Set Savings & Spending Goals**
+
+- **Achievement Alerts** when you hit your financial goals
+
+
+## What I Learned
 
 - Java file handling with `Files.readAllLines()` and `Files.write()`
 - Using conditionals and loops to navigate user input
